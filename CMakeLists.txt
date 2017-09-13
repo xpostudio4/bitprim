@@ -41,6 +41,21 @@ option(ENABLE_MODULE_RECOVERY "Compile with enable module recovery." ON)
 option(WITH_TOOLS "Compile with tools." OFF)
 option(WITH_CONSOLE_NODE_CINT "" OFF)
 
+option(ENABLE_BENCHMARK "Compile benchmark." OFF)
+option(ENABLE_OPENSSL_TESTS "Enable OpenSSL tests, if OpenSSL is available" OFF)
+option(ENABLE_EXPERIMENTAL "Alloc experimental configure options" OFF)
+option(ENABLE_ENDOMORPHISM "Enable endomorphism" OFF)
+option(ENABLE_ECMULT_STATIC_PRECOMPUTATION "Enable precomputed ecmult table for signing" ON)
+option(ENABLE_MODULE_ECDH "Enable ECDH shared secret computation (experimental)." OFF)
+option(ENABLE_MODULE_SCHNORR "Enable Schnorr signature module (experimental)." OFF)
+option(ENABLE_MODULE_RECOVERY "Enable ECDSA pubkey recovery module." ON)
+
+option(WITH_BIGNUM "Enable ECDSA pubkey recovery module." "gmp")
+
+message(WITH_BIGNUM_SUPERPROJECT)
+message(${WITH_BIGNUM})
+
+
 # Implement --with-tests and declare WITH_TESTS.
 #------------------------------------------------------------------------------
 option(WITH_TESTS "Compile with unit tests." OFF)
@@ -76,23 +91,25 @@ if (WITH_LITECOIN)
 	add_definitions(-DLITECOIN)
 endif()
 
-# Check dependencies.
-#==============================================================================
-## Require Boost of at least version 1.56.0 and output ${boost_CPPFLAGS/LDFLAGS}.
-# Require Boost of at least version 1.46.0 and output ${boost_CPPFLAGS/LDFLAGS}.
-#------------------------------------------------------------------------------
-if (NOT ENABLE_SHARED)
-  set(Boost_USE_STATIC_LIBS ON)
+if (NO_CONAN_AT_ALL)
+  # Check dependencies.
+  #==============================================================================
+  ## Require Boost of at least version 1.56.0 and output ${boost_CPPFLAGS/LDFLAGS}.
+  # Require Boost of at least version 1.46.0 and output ${boost_CPPFLAGS/LDFLAGS}.
+  #------------------------------------------------------------------------------
+  if (NOT ENABLE_SHARED)
+    set(Boost_USE_STATIC_LIBS ON)
+  endif()
+
+  find_package(
+    Boost 1.56.0 REQUIRED
+    COMPONENTS chrono date_time filesystem iostreams locale log program_options regex system thread unit_test_framework)
+
+  if (NOT Boost_FOUND)
+    message(FATAL_ERROR "Could not find Boost 1.56.0 or newer" )
+  endif()
 endif()
-
-find_package(
-  Boost 1.56.0 REQUIRED
-  COMPONENTS chrono date_time filesystem iostreams locale log program_options regex system thread unit_test_framework)
-
-if (NOT Boost_FOUND)
-  message(FATAL_ERROR "Could not find Boost 1.56.0 or newer" )
-endif()
-
+  
 
 # bla bla bla
 #------------------------------------------------------------------------------
