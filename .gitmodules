@@ -5,7 +5,7 @@
 [submodule "bitprim-core"]
 	path = bitprim-core
 	url = https://github.com/bitprim/bitprim-core.git
-    branch = dev
+    branch = phab-merge-1
 [submodule "bitprim-database"]
 	path = bitprim-database
 	url = https://github.com/bitprim/bitprim-database.git
