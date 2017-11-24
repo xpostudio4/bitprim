@@ -9,7 +9,7 @@
 [submodule "bitprim-database"]
 	path = bitprim-database
 	url = https://github.com/bitprim/bitprim-database.git
-	branch = dev
+	branch = rpc_test
 [submodule "bitprim-network"]
 	path = bitprim-network
 	url = https://github.com/bitprim/bitprim-network.git
