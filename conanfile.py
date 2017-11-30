@@ -49,7 +49,8 @@ class BitprimConan(ConanFile):
                "enable_ecmult_static_precomputation": [True, False],
                "enable_module_ecdh": [True, False],
                "enable_module_schnorr": [True, False],
-               "enable_module_recovery": [True, False],               
+               "enable_module_recovery": [True, False],
+               "with_rpc": [True, False]
     }
             #    "with_asm": ['x86_64', 'arm', 'no', 'auto'],
             #    "with_field": ['64bit', '32bit', 'auto'],
@@ -74,7 +75,8 @@ class BitprimConan(ConanFile):
         "enable_ecmult_static_precomputation=True", \
         "enable_module_ecdh=False", \
         "enable_module_schnorr=False", \
-        "enable_module_recovery=True"
+        "enable_module_recovery=True", \
+        "with_rpc=True"
 
         # "with_asm='auto'", \
         # "with_field='auto'", \
@@ -133,6 +135,7 @@ class BitprimConan(ConanFile):
         cmake.definitions["ENABLE_MODULE_ECDH"] = option_on_off(self.options.enable_module_ecdh)
         cmake.definitions["ENABLE_MODULE_SCHNORR"] = option_on_off(self.options.enable_module_schnorr)
         cmake.definitions["ENABLE_MODULE_RECOVERY"] = option_on_off(self.options.enable_module_recovery)
+        cmake.definitions["WITH_RPC"] = option_on_off(self.options.with_rpc)
 
         if self.settings.os == "Windows":
             cmake.definitions["WITH_BIGNUM"] = "no"
