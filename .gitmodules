@@ -25,7 +25,7 @@
 [submodule "bitprim-node"]
 	path = bitprim-node
 	url = https://github.com/bitprim/bitprim-node.git
-	branch = rpc_test
+	branch = rpc_test2
 [submodule "bitprim-node-exe"]
 	path = bitprim-node-exe
 	url = https://github.com/bitprim/bitprim-node-exe.git
