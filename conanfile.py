@@ -95,6 +95,8 @@ class BitprimConan(ConanFile):
     def requirements(self):
         if self.settings.os == "Linux" or self.settings.os == "Macos":
             self.requires("gmp/6.1.2@bitprim/stable")
+        if self.options.with_rpc:
+            self.requires("libzmq/4.2.2@bitprim/stable")
 
     def build(self):
         cmake = CMake(self)
