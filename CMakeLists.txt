@@ -99,7 +99,7 @@ set(WITH_EXAMPLES OFF)
 set(ENABLE_SHARED OFF)
 set(ENABLE_SHARED_NODE_CINT ON)
 
-set(WITH_RPC ON)
+# set(WITH_RPC ON)
 if (WITH_RPC)
     add_definitions(-DBITPRIM_WITH_RPC)
 endif()
