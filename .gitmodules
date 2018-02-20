@@ -21,7 +21,7 @@
 [submodule "bitprim-blockchain"]
 	path = bitprim-blockchain
 	url = https://github.com/bitprim/bitprim-blockchain.git
-	branch = dev
+	branch = feature_compact_blocks
 [submodule "bitprim-node"]
 	path = bitprim-node
 	url = https://github.com/bitprim/bitprim-node.git
